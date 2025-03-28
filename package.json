@@ -12,6 +12,9 @@
     "vite": "^6.2.0"
   },
   "dependencies": {
-    "phaser": "^3.88.2"
+    "fast-glob": "^3.3.3",
+    "sharp": "^0.33.5",
+    "svgo": "^3.3.2",
+    "vite-plugin-image-optimizer": "^1.1.8"
   }
 }

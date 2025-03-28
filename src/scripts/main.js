@@ -1,13 +1,14 @@
-import Phaser from "phaser";
-
 const config = {
   type: Phaser.AUTO,
+  parent: "game-container",
   width: 960,
   height: 540,
-  // scale: {
-  //   mode: Phaser.Scale.FIT, // Scales the game to fit the parent container while preserving aspect ratio
-  //   autoCenter: Phaser.Scale.CENTER_BOTH, // Centers the canvas in the available space
-  // },
+  scale: {
+    parent: 'game-container',
+    mode: Phaser.Scale.FIT, // Scales the game to fit the parent container while preserving aspect ratio
+    autoCenter: Phaser.Scale.CENTER_BOTH, // Centers the canvas in the available space
+    zoom: 1,
+  },
   physics: {
     default: "arcade",
     arcade: { gravity: { y: 300 }, debug: false },
@@ -21,17 +22,30 @@ let player;
 let platforms;
 let platformObjects = [];
 
+const baseURL = import.meta.env.BASE_URL;
+
 function preload() {
-  this.load.image("background", "assets/images/background/MainBackGround.png");
-  this.load.image("platform", "assets/images/background/GrassPlatform.png");
-  this.load.spritesheet("player_idle", "assets/images/player/idle-sheet.png", {
-    frameWidth: 208,
-    frameHeight: 160,
-  });
-  this.load.spritesheet("player_jump", "assets/images/player/jump-sheet.png", {
-    frameWidth: 208,
-    frameHeight: 160,
-  });
+  this.load.image(
+    "background",
+    `${baseURL}/images/background/MainBackGround.png`
+  );
+  this.load.image("platform", `${baseURL}/images/background/GrassPlatform.png`);
+  this.load.spritesheet(
+    "player_idle",
+    `${baseURL}/images/player/idle-sheet.png`,
+    {
+      frameWidth: 208,
+      frameHeight: 160,
+    }
+  );
+  this.load.spritesheet(
+    "player_jump",
+    `${baseURL}/images/player/jump-sheet.png`,
+    {
+      frameWidth: 208,
+      frameHeight: 160,
+    }
+  );
 }
 
 function create() {
